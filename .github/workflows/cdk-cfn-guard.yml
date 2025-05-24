@@ -2,37 +2,37 @@ name: CDK Synthesis and CloudFormation Guard
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
   workflow_dispatch:
 
 jobs:
   cdk-synth-and-guard:
     runs-on: ubuntu-latest
-    
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-      
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '22'
-        cache: 'npm'
-        
-    - name: Install dependencies
-      run: npm ci
-      
-    - name: CDK Synth
-      run: |
-        mkdir -p cdk.out
-        npx cdk synth > cdk.out/template.yaml
 
-    - name: CloudFormation Guard
-      uses: aws-cloudformation/cloudformation-guard@main
-      with:
-        rules: ./cis-top-20.guard
-        checkout: false
-        debug: true
-        data: ./cdk.out/template.yaml
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "22"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: CDK Synth
+        run: |
+          mkdir -p cdk.out
+          npx cdk synth > cdk.out/template.yaml
+
+      - name: CloudFormation Guard
+        uses: aws-cloudformation/cloudformation-guard@main
+        with:
+          rules: ./cis-top-20.guard
+          checkout: false
+          debug: true
+          data: ./cdk.out/template.yaml
