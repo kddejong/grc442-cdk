@@ -21,16 +21,28 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: "22"
-      - name: Install CDK
+      - name: Install dependencies
         run: |
-          # install your Python dependencies here
           npm install -g aws-cdk
-          npm install
+          npm ci
+
+      - name: CDK Synth
+        run: |
+          mkdir -p cdk.out
+          npx cdk synth > cdk.out/template.yaml
+
+      - name: CloudFormation Guard
+        uses: aws-cloudformation/cloudformation-guard@main
+        with:
+          rules: ./rules/cis-aws-benchmark-level-1.guard
+          checkout: false
+          debug: true
+          data: ./cdk.out/template.yaml
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: arn:aws:iam::615299738499:role/github-action-cdk-deploy
-          role-session-name: cdk0deploy
+          role-session-name: cdk-deploy
           aws-region: "us-west-2"
       - name: Deploy to AWS
         run: cdk deploy

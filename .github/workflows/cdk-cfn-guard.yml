@@ -32,7 +32,7 @@ jobs:
       - name: CloudFormation Guard
         uses: aws-cloudformation/cloudformation-guard@main
         with:
-          rules: ./cis-top-20.guard
+          rules: ./rules/cis-aws-benchmark-level-1.guard
           checkout: false
           debug: true
           data: ./cdk.out/template.yaml
