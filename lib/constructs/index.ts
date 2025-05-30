@@ -1,1 +1,1 @@
-export {MySecureBucket} from './bucket';
+export { MyCompanyBucket } from './bucket';

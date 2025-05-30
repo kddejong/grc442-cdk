@@ -1,5 +1,5 @@
 
-import { Annotations, CfnResource, IAspect, Tokenization, Stack } from 'aws-cdk-lib';
+import { Annotations, Stack } from 'aws-cdk-lib';
 import { IConstruct } from 'constructs';
 import { CfnBucket } from 'aws-cdk-lib/aws-s3';
 
