@@ -6,6 +6,9 @@ import { CfnBucket } from 'aws-cdk-lib/aws-s3';
 
 export function checkBucket(node: IConstruct): void {
     if (node instanceof CfnBucket) {
+        node.versioningConfiguration = {
+            status: "Enabled",
+        }
         if (node.bucketEncryption == undefined) {
             Annotations.of(node).addError('MyCompanyChecker: BucketEncryption is required');
             return;
@@ -39,11 +42,4 @@ export function checkBucket(node: IConstruct): void {
 
 
 
-            //node.bucketEncryption = {
-            //    serverSideEncryptionConfiguration: [{
-            //        bucketKeyEnabled: true,
-            //        serverSideEncryptionByDefault: {
-            //            sseAlgorithm: BucketEncryption.KMS_MANAGED,
-            //        },
-            //    }]
-            //}
+            
