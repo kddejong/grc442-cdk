@@ -1,5 +1,5 @@
 
-import { Annotations, Stack } from 'aws-cdk-lib';
+import { Annotations, Aspects, Stack } from 'aws-cdk-lib';
 import { IConstruct } from 'constructs';
 import { CfnBucket } from 'aws-cdk-lib/aws-s3';
 
@@ -35,3 +35,15 @@ export function checkBucket(node: IConstruct): void {
         }
     }
 }
+
+
+
+
+            //node.bucketEncryption = {
+            //    serverSideEncryptionConfiguration: [{
+            //        bucketKeyEnabled: true,
+            //        serverSideEncryptionByDefault: {
+            //            sseAlgorithm: BucketEncryption.KMS_MANAGED,
+            //        },
+            //    }]
+            //}
