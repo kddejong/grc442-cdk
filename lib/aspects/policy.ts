@@ -1,5 +1,5 @@
 
-import { Annotations, CfnResource, IAspect } from 'aws-cdk-lib';
+import { IAspect } from 'aws-cdk-lib';
 import { IConstruct } from 'constructs';
 import { checkBucket } from './bucket';
 
