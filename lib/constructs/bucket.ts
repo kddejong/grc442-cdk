@@ -8,7 +8,6 @@ export class MyCompanyBucket extends s3.Bucket {
         super(scope, id, {
             ...props,
             versioned: true,
-            publicReadAccess: false,
             blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
             encryption: s3.BucketEncryption.KMS_MANAGED,
             enforceSSL: true,
