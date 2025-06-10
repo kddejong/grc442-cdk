@@ -9,6 +9,8 @@ export class Grc442CdkStack extends cdk.Stack {
         new s3.Bucket(this, 'bucket', {
             encryption: s3.BucketEncryption.KMS_MANAGED,
             enforceSSL: true,
+            blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
+            versioned: true,
         });
     }
 }
