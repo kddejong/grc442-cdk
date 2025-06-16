@@ -26,18 +26,6 @@ jobs:
           npm install -g aws-cdk
           npm ci
 
-      - name: CDK Synth
-        run: |
-          mkdir -p cdk.out
-          npx cdk synth > cdk.out/template.yaml
-
-      #- name: CloudFormation Guard
-      #  uses: aws-cloudformation/cloudformation-guard@main
-      #  with:
-      #    rules: ./rules
-      #    checkout: false
-      #    debug: true
-      #    data: ./cdk.out/template.yaml
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
